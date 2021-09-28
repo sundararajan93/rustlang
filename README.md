@@ -485,3 +485,55 @@ If we included the the library like above, we can easily call the functions/ met
 ```
 println!("Array occupies {} bytes", mem::size_of_val(&numbers));
 ```
+
+### Vectors
+
+Vectors are resizable arrays. Most of the array methods would be applicable to vectors as well (printing vector, modifying single value, getting vector length, finding memory utilization, slicing). However unlike arrays, we could add new element and pop the last added element in vectors
+
+#### To create a vector
+
+```
+let mut numbers: Vec<i32> = vec![1, 2, 3, 4, 5];
+```
+
+#### Adding or Pushing new value to the vector
+
+```
+numbers.push(120);
+```
+
+#### Pop the last element in vector
+
+```
+numbers.pop();
+```
+
+#### Looping through Vectors
+
+```
+for number in numbers.iter(){
+    println!("Number: {}", number);
+}
+```
+#### Mutate while looping vector
+
+We can change the values of vector while looping. This would be very useful to change the values in a single shot. 
+
+For example if we want to multiply the whole vector by 2. we can use the for loop and `iter_mut()` method like below
+
+```
+println!("Original vector {:?}", numbers);
+
+for n in numbers.iter_mut(){
+    *n *= 2;
+}
+println!("Vector multiplied by 2 {:?}", numbers);
+
+```
+
+**Output**
+
+```
+Original vector [100, 2, 3, 4, 5, 11]
+Vector multiplied by 2 [200, 4, 6, 8, 10, 22]
+```
