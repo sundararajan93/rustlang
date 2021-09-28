@@ -44,5 +44,4 @@ pub fn run(){
     
     // Assertion Testing
     assert_eq!(11, cap_string.len());
-    
 }

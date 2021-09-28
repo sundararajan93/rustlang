@@ -385,3 +385,103 @@ thread 'main' panicked at 'assertion failed: `(left == right)`
  right: `11`', src/strings.rs:46:5
 note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
 ```
+
+### Tuples
+
+Tuples are group together values of different data types, Max 12 elements can be in a tuple.
+We can declare tuple like the below example
+
+```
+let person: (&str, &str, i8) = ("John", "Cricket", 59);
+```
+
+Accessing tuple can be like below example
+
+```
+println!("{name} like {sport} and {name} scored {score}", name = person.0, sport = person.1, score = person.2);
+```
+
+### Arrays
+
+Arrays are fixed length of elements with same datatype grouped together
+
+#### To Create an array
+
+```
+let mut numbers: [i32; 5] = [1, 2, 3, 4, 5];
+```
+
+- let - keyword for assigning
+- mut - Mutable so that we can change the value in future
+- numbers - array name
+- i32 - Integer 32 bit
+- 5 - The number of values to be present in array
+
+The length of the array should be equal to the value given while declaring. Also we cannot use mixed datatype in an array. 
+
+for example the below cannot be done with rust arrays,
+
+```
+// Will throw error
+let mut numbers: [i32; 5] = [1, 2, 3, 4, 5, 6];
+(or)
+let mut numbers: [i32; 5] = [1, 2, 3, 4, "five"];
+```
+#### Modifying a value in array
+
+To modify the value in array you can use `array_name[index] = value`. 
+
+```
+numbers[0] = 100;
+```
+This changes the first element of the array to `100`. Note that the array should be declared as mutable data type.
+
+#### Printing array 
+
+```
+// To print whole array
+println!("{:?}", numbers);
+
+// To print only the selected value
+println!("{}", numbers[0]);
+```
+
+#### Get length of an array
+
+```
+println!("Length of the array - {}", numbers.len());
+```
+
+#### Slicing an array
+
+Slicing is a method to split the array from a desired index to a desired index.
+
+Example: if, a = [1, 2, 3, 4, 5] if we desire to slice first two values a[0..2]
+
+```
+// Slicing the array in RUST
+let slice: &[i32] = &numbers[0..3];
+println!("Sliced array - {:?}", slice);
+```
+
+In the above example we are creating another array `slice` with datatype `i32` and slicing the first three elements.
+
+#### Memory utilization of array
+
+We can verify the memory utilized for our array. for this we can make use of `mem` function from `std` library.
+
+```
+println!("Array occupies {} bytes", std::mem::size_of_val(&numbers));
+```
+
+We can also import the std library to avoid calling them with whole path.
+
+```
+use std::mem
+```
+
+If we included the the library like above, we can easily call the functions/ methods in the library.
+
+```
+println!("Array occupies {} bytes", mem::size_of_val(&numbers));
+```
