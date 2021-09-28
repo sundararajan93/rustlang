@@ -287,5 +287,101 @@ When you run you could see the below
 a is 😍
 ```
 
+### String and String methods
 
+Primitive string is immutable, fixed-length somewhere in memory.Another type of Growable string can also be used.
 
+```
+// Normal String
+let hello = "Hello";
+```
+
+```
+// Growable & Mutable String
+let mut hello = String::from("Hello ");
+```
+
+#### String Methods
+
+#### To get length of the string
+
+```
+// Get length of String
+println!("Length - {}", hello.len());
+```
+
+#### Pushing data to string
+
+We can push data with two methods. `push()` & `push_str()`. `push` method is char. It pushes only one character at a time. however if you want to push more than one character we can use `push_str()` method.
+
+```
+// Pushing a char to string (we can push only one char at a time)
+hello.push('W');
+println!("{}", hello);
+
+// Pushing multiple string
+hello.push_str("orld!");
+println!("{}", hello);
+```
+
+#### Capacity string
+
+We can add a capacity to the string variable we create. This can be done using `with_capacity()` method like below
+
+```
+// Capacity in bytes
+let mut cap_string = String::with_capacity(15);
+cap_string.push_str("Hello Rust!");
+```
+
+If you try to push more than the capacity assigned you will see an error.
+
+To check the capacity you can use `capacity()` method
+
+```
+// check if empty
+println!("Empty: {}", cap_string.is_empty());
+```
+
+#### To find the data that Contains a string
+
+```
+// Check if contains
+println!("Contains 'Rust' - {}", cap_string.contains("Rust"));
+```
+
+#### To Replace the string with another string
+
+```
+// Replace 
+println!("Replace 'Rust' with 'Rustlang', {}", cap_string.replace("Rust", "Rustlang"));
+```
+
+#### Looping through the string with whitespace
+
+We can loop through the string with spliting whitespace. It litrelly means you can loop every word in a string variable.
+
+```
+// Loop through string with Whitespace
+for word in cap_string.split_whitespace(){
+    println!("{}", word)
+
+}
+```
+
+#### Assertion Testing
+
+Assertion testing is just testing the Left == Right. Its similar to comparision. Where it checks if LEFT == RIGHT values. If it passes The program execute without any error. If the condition fails the program will throw an error
+
+```
+// Assertion Testing
+assert_eq!(11, cap_string.len());
+```
+The error looks something like the below,
+
+```
+thread 'main' panicked at 'assertion failed: `(left == right)`
+  left: `14`,
+ right: `11`', src/strings.rs:46:5
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+```
