@@ -670,3 +670,139 @@ for number in 1..100{
     }
 }
 ```
+
+### Functions
+
+Functions are the block of code with instructions, Functions can be reused, as per DRY(Don't Repeat Yourself) terminology.
+
+#### Simple function
+
+
+```
+pub fn run(){
+    sample();
+}
+
+fn sample(){
+    println!("This is a simple function, without any arguments");
+}
+```
+
+The above function `sample` can be called in `main` function and it can be reused 'n' number of times.
+
+
+#### Function with arguments
+We can pass arguments to the function and mention the values for the arguments while calling. 
+
+**Example**
+
+```
+pub fn run(){
+    println!("********* FUNCTIONS **********");
+    greet("Hello", "Sundar");
+}
+
+fn greet(greeting: &str, name: &str){
+    println!("{} {}, Nice to see you!", greeting, name);
+}
+```
+
+#### Function with return value
+In general, a function will have return value. Most probably this return value will be assigned to a variable and use it. We could return the value by using `->` pointer symbol.
+
+```
+fn add(num1: i32, num2: i32) -> i32 {
+    num1 + num2
+}
+```
+Note that there isn't any `;` (semicolon) at the end of expression. This is to inform rust language to consider the expression to be returned. We can call this function by storing the return value in a variable
+
+```
+pub fn run(){
+    let sum = add(5,9);
+    println!("SUM : {}", sum);
+}
+```
+
+#### Closure function
+
+We have a new type of function called closure function. This is an anonymous function which captures values from the scope it is defined. This can be used as simplified way to write a function.
+
+**Syntax**
+```
+let <variable_name> = | argument1: <type>, argument2: <type> | <expression>
+```
+
+**Usage**
+```
+let prod_numbers = | number1: i32, number2: i32 | number1 * number2;
+println!("Product is {}", prod_numbers(3, 4));
+```
+
+### Reference pointers
+
+Reference pointers are the reference to the point a resource in memory. This pointer varies from primitive array and non primitive arrays (vectors)
+
+#### 1. Primitive array
+Referencing a variable to another variable is simple in primitive array.
+
+```
+let array1 = [1, 2, 3, 4, 5];
+let array2 = array1;
+
+println!("Arrays - {:?}", (array1, array2));
+```
+
+In this example `array2` is assigned with value of `array1`. and both the arrays are printed as tuples.
+
+**Output**
+
+```
+Arrays - ([1, 2, 3, 4, 5], [1, 2, 3, 4, 5])
+```
+The output looks expected. However if you try the same with non-primitive array. this will fail.
+
+#### 2. Non-Primitive array (vectors)
+
+Let's try with non primitive arrays (vectors)
+
+```
+let vector1 = vec![1,2,3,4,5];
+let vector2 = vector1;
+println!("Vectors - {:?}", (vector1, vector2));
+```
+
+If we try the same with non primitive arrays (vectors). we will get the below error. It means the value which is stored in `vector1` will be moved to `vector2`. Now `vector1` will not have any value so it throw error.
+
+**error**
+```
+   Compiling rust_practice v0.1.0 (/media/sundar/Data/Programming/Practices/RUST/rust_practice)
+error[E0382]: use of moved value: `vector1`
+  --> src/pointer_ref.rs:18:33
+   |
+15 |     let vector1 = vec![1,2,3,4,5];
+   |         ------- move occurs because `vector1` has type `Vec<i32>`, which does not implement the `Copy` trait
+16 |     let vector2 = vector1;
+   |                   ------- value moved here
+17 | 
+18 |     println!("Vectors - {:?}", (vector1, vector2));
+   |                                 ^^^^^^^ value used here after move
+
+For more information about this error, try `rustc --explain E0382`.
+error: could not compile `rust_practice` due to previous error
+```
+
+**Solution**
+To solve this issue we must reference pointer with (&) to use both the value with both the vectors
+
+```
+let vector1 = vec![1,2,3,4,5];
+let vector2 = &vector1;
+
+println!("Vectors - {:?}", (&vector1, vector2));
+```
+
+**output**
+```
+Vectors - ([1, 2, 3, 4, 5], [1, 2, 3, 4, 5])
+```
