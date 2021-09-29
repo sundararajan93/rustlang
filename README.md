@@ -537,3 +537,136 @@ println!("Vector multiplied by 2 {:?}", numbers);
 Original vector [100, 2, 3, 4, 5, 11]
 Vector multiplied by 2 [200, 4, 6, 8, 10, 22]
 ```
+
+### Conditionals and Comparision
+
+In program, we might need to check specific conditions and act as per the condition status. This can be through `if elseif else` statements in RUST. Comparision is nothing but compare couple of values and return the boolean values (`true` or `false`). Below are some comparision operators.
+
+```
+&& - AND
+|| - OR
+> - Greater Than
+< - Less than
+<= - Less than or equals to
+>= - Greater than or equal to
+== - Equals to
+!= - Not Equal to
+```
+
+We can frame `if elseif else` condition like the below using these comparision operators.
+
+```
+pub fn run(){
+    
+    // creating variables
+    let age: u8 = 21;
+    let has_id: bool = false;
+
+    // Checking if age is greater than or equal to 21 and has ID proof
+    if age >= 21 && has_id{
+        println!("Bartender: What would you like to drink?");
+    } else if age < 21 && has_id {
+        println!("Bartender: Sorry, You have no access");
+    } else {
+        println!("Bartender: I'll have to see your ID.");
+    }
+
+}
+```
+
+We can also simplify the usage by creating another variable and capture the boolean value. This could be a good shorthand use for if/elseif/else
+
+```
+//Shorthand If/Else
+let is_adult = if age >= 21 { true } else { false };
+println!("Is He an Adult? {}", is_adult);
+```
+
+Here, we are creating a new variable `is_adult`, compare the age using `if{}else{}` and assigning value based on the condition `true` or `false`.
+
+### Loops
+
+Loops are used to iterate until a specific condition is met. We have three types of loop in Rust.
+
+#### 1. Infinite loop
+
+```
+pub fn run() {
+    let mut count = 0;
+
+    loop {
+        count += 1;
+        println!("Count - {}", count);
+
+        if count == 20 {
+            break;
+        }
+    }
+}
+```
+
+In this run funtion, we creating a mutable variable `count`. Then we use Rust's `loop` and increment the `count += 1`. Then we are printing the count number. If we don't have a breakpoint this loop would run forever. So, we can create a `if` condtion to `break` the loop.
+
+#### 2. While loop
+
+While loop is similar to infinite loop. we need to pass the specific contition the loop runs until the condition false.
+
+```
+let mut count = 0;
+
+while count <= 100 {
+    println!("Count - {}", count);
+    count += 1;
+    }
+```
+
+As per the above code the while loop runs util the count is less than and equal to 100. Once it reached 101, It breaks and come out of the loop by itself.
+
+Let's have a practical `fizzbuzz` example. FizzBuzz is a popular interview question for programming. Basically, we need to iterate over a range of number and print `fizz` if they are divisible by 2, print `buzz` if they are divisible by 5, print `fizzbuzz` if the number is divisible by 7. Lets see how we can use `fizzbuzz` in while loop
+
+```
+let mut count = 1;
+
+while count <= 100 {
+    
+    if count % 7 == 0{
+        println!("FizzBuzz");
+    } else if count % 5 == 0 {
+        println!("Buzz");
+    } else if count % 2 == 0 {
+        println!("Fizz");
+    } else {
+        println!("{}", count);
+    }
+
+    count += 1;
+}
+```
+**Note:** If you forget to increment the loop will not run.
+
+#### 3. For Loop
+
+For loop runs to iterate a range of numbers, string, Vectors, array, tuples. Advantage of for loop is, we don't need to create a value and increment. Let's see a minimal example of for loop range below,
+
+```
+for number in 0..100{
+    println!("Number - {}", number);
+}
+```
+This snippet of for loop iterates from 0 to 100.
+
+Let's see the same `fizzbuzz` example with for loop this time.
+
+```
+for number in 1..100{
+    if number % 7 == 0{
+        println!("FizzBuzz");
+    } else if number % 5 == 0 {
+        println!("Buzz");
+    } else if number % 2 == 0 {
+        println!("Fizz");
+    } else {
+        println!("{}", number);
+    }
+}
+```
