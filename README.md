@@ -849,6 +849,14 @@ println!("Tuple RGB - {:?}", (c.0, c.1, c.2));
 
 To modify the tuple value -> `c.0 = 220;`
 
+**Output**
+
+```
+RED - 200 BLUE - 120 GREEN - 26
+Tuple RGB - (255, 0, 120)
+Tuple RGB - (220, 0, 120)
+```
+
 #### 3. Creating struct and Implement functions
 
 In this example we would create a struct `Person` and we will have `first_name` and `last_name`. We could create a construction function `new` to construt the `Person`, Also we can create other methods like `get_fullname` & `change_lastname`, 
@@ -968,4 +976,14 @@ impl Person {
         (self.first_name, self.last_name)
     }
 }
+```
+
+**Output**
+
+```
+FIRSTNAME - Sundara
+LASTNAME - Rajan
+Sundara Rajan
+Sundara Raman
+As Tuple: ("Sundara", "Raman")
 ```
