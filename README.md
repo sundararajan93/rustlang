@@ -851,7 +851,7 @@ To modify the tuple value -> `c.0 = 220;`
 
 #### 3. Creating struct and Implement functions
 
-In this example we would create a struct `Person` and we will have `first_name` and `last_name`. We could create a construction function `new` to construt the `Person`, Also we can create other methods like `get_fullname` & `change_lastname`
+In this example we would create a struct `Person` and we will have `first_name` and `last_name`. We could create a construction function `new` to construt the `Person`, Also we can create other methods like `get_fullname` & `change_lastname`, 
 
 ```
 // creating struct
@@ -916,6 +916,21 @@ We create `change_lastname` function and pass `&mut self` since we will change t
 p.change_lastname("Raman");
 ```
 
+We can try convert this firstname and lastname as a tuple.
+
+```
+// Convert as tuple 
+fn as_tuple(self) -> (String, String){
+    (self.first_name, self.last_name)
+}
+```
+
+Calling the tuple is simple as well.
+
+```
+println!("As Tuple: {:?}", p.as_tuple());
+```
+
 **Note:** These methods should be within the same `impl` block. 
 
 *complete Code*
@@ -946,6 +961,11 @@ impl Person {
     //function to change last name
     fn change_lastname(&mut self, last: &str){
         self.last_name = last.to_string();
+    }
+
+    // Convert as tuple 
+    fn as_tuple(self) -> (String, String){
+        (self.first_name, self.last_name)
     }
 }
 ```

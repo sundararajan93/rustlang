@@ -37,6 +37,11 @@ impl Person {
     fn change_lastname(&mut self, last: &str){
         self.last_name = last.to_string();
     }
+
+    // Convert as tuple 
+    fn as_tuple(self) -> (String, String){
+        (self.first_name, self.last_name)
+    }
 }
 
 pub fn run(){
@@ -64,6 +69,8 @@ pub fn run(){
 
     p.change_lastname("Raman");
     println!("{}", p.get_fullname());
+
+    println!("As Tuple: {:?}", p.as_tuple());
 }
 
 // Creating Tuple variable
