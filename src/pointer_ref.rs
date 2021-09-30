@@ -1,6 +1,8 @@
 // Reference Pointer - Point to a resource in memory
 
 pub fn run() {
+    println!("\n******* REFERENCE POINTERS *******");
+
     //primitive array
 
     let array1 = [1, 2, 3, 4, 5];

@@ -9,6 +9,7 @@ mod conditions;
 mod loops;
 mod functions;
 mod pointer_ref;
+mod struct_;
 
 fn main() {
     print::run();
@@ -22,4 +23,5 @@ fn main() {
     loops::run();
     functions::run();
     pointer_ref::run();
+    struct_::run();
 }

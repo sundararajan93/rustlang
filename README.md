@@ -806,3 +806,146 @@ println!("Vectors - {:?}", (&vector1, vector2));
 ```
 Vectors - ([1, 2, 3, 4, 5], [1, 2, 3, 4, 5])
 ```
+
+### Struct
+
+Structs are used to create a custom data type. we can use them in tradional way, Tuple struct or implement them as "class" with methods(functions). Class here referred is just for understanding.
+
+#### 1. Traditional way
+
+Let's see the traditional way first. We can try creating an RGB struct.
+
+```
+struct Rgb{
+    red: u8,
+    green: u8,
+    blue: u8,
+}
+```
+
+We use this struct (datatype) to our variable, assign values to it and we can call this variable in our function like below
+
+```
+let mut c = Rgb {
+    red: 200,
+    green: 120,
+    blue: 15 
+};
+
+println!("RED - {} BLUE - {} GREEN - {}", c.red, c.green, c.blue);
+```
+we can modify the value like this -> `c.green = 150`
+
+#### 2. Creating Tuple struct
+
+Let's try the same with tuple now.
+
+```
+struct NewColor(u8, u8, u8);
+
+let mut c = NewColor(255,0,120);
+println!("Tuple RGB - {:?}", (c.0, c.1, c.2));
+```
+
+To modify the tuple value -> `c.0 = 220;`
+
+#### 3. Creating struct and Implement functions
+
+In this example we would create a struct `Person` and we will have `first_name` and `last_name`. We could create a construction function `new` to construt the `Person`, Also we can create other methods like `get_fullname` & `change_lastname`
+
+```
+// creating struct
+struct Person{
+    first_name: String,
+    last_name: String
+}
+```
+
+To implement this struct to a function we need to use `impl` keyword like below and we must create a constructor. 
+
+```
+impl Person{
+    // constructor
+    fn new(first:&str, last:&str) -> Person {
+        Person {
+            first_name: first.to_string(),
+            last_name: last.to_string(),
+        }
+    }
+
+}
+```
+
+In the above consturctor we just created implemented `Person` Struct and we created a method/function `new` with `first` and `last` parameter and return it to `Person` struct. Then we are creating `first_name` and `lastname` and assign the parameter. we use `to_string()` method to get them and save them as string.
+
+Now to instantiate this `Person` struct we need to create a variable and call the `new()` method/function with parameters like the below,
+
+```
+let mut p = Person::new("Sundara", "Rajan");
+println!("FIRSTNAME - {}\nLASTNAME - {}", p.first_name, p.last_name);
+```
+
+This looks good, lets create other methods to show fullname and change the last name.
+
+```
+fn get_fullname(&self) -> String {
+    format!("{} {}", self.first_name, self.last_name)
+}
+```
+
+`get_fullname` function returns the `String`. we pass `(&self)` as parameter. This is just like `this` or `self` keyword in other programming languages. we also use `format!()` function, which is similar to `println!()` function.
+
+```
+println!("{}", p.get_fullname());
+```
+
+This is how we can call the method.
+
+Lets create another function to change the lastname.
+
+```
+//function to change last name
+fn change_lastname(&mut self, last: &str){
+    self.last_name = last.to_string();
+}
+```
+
+We create `change_lastname` function and pass `&mut self` since we will change the `last_name`. then pass `last: &str` as second parameter(last is the parameter used to instantiate lastname in `new()` function). Using this method is fairly simple.
+
+```
+p.change_lastname("Raman");
+```
+
+**Note:** These methods should be within the same `impl` block. 
+
+*complete Code*
+
+```
+// creating struct
+struct Person{
+    first_name: String,
+    last_name: String
+}
+
+// Implementing in function
+impl Person {
+    // Constructor function
+    fn new(first:&str, last:&str) -> Person{
+        Person {
+            first_name: first.to_string(),
+            last_name: last.to_string(),
+        }
+    }
+
+    //function to get fullname
+    fn get_fullname(&self) -> String {
+        format!("{} {}", self.first_name, self.last_name)
+        
+    }
+    
+    //function to change last name
+    fn change_lastname(&mut self, last: &str){
+        self.last_name = last.to_string();
+    }
+}
+```
