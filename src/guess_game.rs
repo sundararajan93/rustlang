@@ -8,7 +8,7 @@ pub fn run(){
     
     let secret_number: u32 = rand::thread_rng().gen_range(1..10);
 
-    println!("The secret number is {}", secret_number);
+    // println!("The secret number is {}", secret_number);
     
     loop {
         println!("\nGuess the number: ");
