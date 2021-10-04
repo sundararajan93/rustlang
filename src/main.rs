@@ -10,6 +10,10 @@ mod loops;
 mod functions;
 mod pointer_ref;
 mod struct_;
+mod enums;
+//mod cli_args;
+//mod writing_file;
+mod guess_game;
 
 fn main() {
     print::run();
@@ -24,4 +28,8 @@ fn main() {
     functions::run();
     pointer_ref::run();
     struct_::run();
+    enums::run();
+    // cli_args::run();
+    // writing_file::run();
+    guess_game::run();
 }

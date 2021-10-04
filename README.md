@@ -987,3 +987,57 @@ Sundara Rajan
 Sundara Raman
 As Tuple: ("Sundara", "Raman")
 ```
+
+### Enums
+
+Enums are the types which have definitive values. We can see an example of ball movement in a game. Lets create a `enum` for movement and assign the moving state. 
+
+```
+enum Movement{
+    // variants - The required possible values
+    Up,
+    Down,
+    Left,
+    Right, 
+}
+```
+Now we need a function to move the ball. So we are creating `move_ball` function with argument `m` of type `Movement` (Movement considered to be a type since we created with enum). Then we are using a `match` keyword. `match` is like switch case in other languages. It performs action depends on the info
+
+```
+fn move_ball(m: Movement){
+    // Perform action depending on the Info (movement)
+    match m{
+        Movement::Up => println!("Ball Moved Up"),
+        Movement::Down => println!("Ball Moved Down"),
+        Movement::Left => println!("Ball Moved Left"),
+        Movement::Right => println!("Ball Moved Right"),
+
+    }
+}
+```
+
+Lets create movement actions in our main run function and call `move_ball()` function.
+
+```
+pub fn run(){
+
+    let action1 = Movement::Up;
+    let action2 = Movement::Down;
+    let action3 = Movement::Left;
+    let action4 = Movement::Right;
+    
+    move_ball(action1);
+    move_ball(action2);
+    move_ball(action3);
+    move_ball(action4);
+}
+```
+
+**Output**
+
+```
+Ball Moved Up
+Ball Moved Down
+Ball Moved Left
+Ball Moved Right
+```
